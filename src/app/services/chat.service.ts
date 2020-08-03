@@ -28,10 +28,16 @@ export class ChatService {
   }
 
   login(type: string){
-    this.afAuth.auth.signInWithPopup( new firebase.auth.GoogleAuthProvider() );
+
+    if (type.toLowerCase() === 'google'){
+      this.afAuth.auth.signInWithPopup( new firebase.auth.GoogleAuthProvider() );
+    }else{
+      this.afAuth.auth.signInWithPopup( new firebase.auth.TwitterAuthProvider() );
+    }
   }
 
   logout(){
+    this.usuario = {};
     this.afAuth.auth.signOut();
   }
 
