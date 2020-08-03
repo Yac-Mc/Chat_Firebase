@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 // Components
 import { AppComponent } from './app.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { LoginComponent } from './components/login/login.component';
 
 // Services --IMPORTANTE!!! Ya no se necesita importar los componentes de servicios que se creén
 // import { ChatService } from './services/chat.service';
@@ -18,7 +19,8 @@ import { ChatComponent } from './components/chat/chat.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ChatComponent
+    ChatComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
