@@ -16,19 +16,24 @@ export class ChatService {
 
   cargarMensajes(){
 
-    this.itemsCollection = this.afs.collection<Mensaje>('chats');
+    this.itemsCollection = this.afs.collection<Mensaje>('chats', ref => ref.orderBy('fecha', 'desc')
+                                                                            .limit(5));
 
     return this.itemsCollection.valueChanges()
                               .pipe(
                                 map( (mensajes: Mensaje[]) => {
-                                  this.chats = mensajes;
+                                  this.chats = [];
+
+                                  for (const mensaje of mensajes){
+                                    this.chats.unshift(mensaje);
+                                  }
                                 })
                               );
   }
 
   agregarMensaje(texto: string){
 
-    let mensaje: Mensaje = {
+    const mensaje: Mensaje = {
       nombre: 'demo',
       mensaje: texto,
       fecha: new Date().getTime()
