@@ -17,13 +17,13 @@ export class ChatService {
 
   constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
-      console.log('Estado del usuario', user);
       if (!user){
         return;
       }
 
       this.usuario.nombre = user.displayName;
       this.usuario.uid = user.uid;
+      this.usuario.photoURL = user.photoURL;
     });
   }
 
@@ -61,9 +61,10 @@ export class ChatService {
   agregarMensaje(texto: string){
 
     const mensaje: Mensaje = {
-      nombre: 'demo',
+      nombre: this.usuario.nombre,
       mensaje: texto,
-      fecha: new Date().getTime()
+      fecha: new Date().getTime(),
+      uid: this.usuario.uid
     };
 
     return this.itemsCollection.add(mensaje);

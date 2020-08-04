@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { LoginComponent } from './components/login/login.component';
+import { NoImagePipe } from './pipes/no-image.pipe';
 
 // Services --IMPORTANTE!!! Ya no se necesita importar los componentes de servicios que se creén
 // import { ChatService } from './services/chat.service';
@@ -20,7 +21,8 @@ import { LoginComponent } from './components/login/login.component';
   declarations: [
     AppComponent,
     ChatComponent,
-    LoginComponent
+    LoginComponent,
+    NoImagePipe
   ],
   imports: [
     BrowserModule,

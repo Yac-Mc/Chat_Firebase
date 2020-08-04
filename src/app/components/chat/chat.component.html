@@ -1,33 +1,26 @@
-<!-- <ul>
-    <li class="text" *ngFor="let chat of chats | async">
-        {{chat.mensaje}}
-    </li>
-</ul> -->
-<h1>Chat</h1>
+<div class="row col-md-12">
+    <div class="col-md-6">
+
+        <h1>Chat</h1>
+    </div>
+
+    <div class="col-md-6 text-right">
+        <img [src]="chatService.usuario.photoURL | noImage" class="img-thumbnail img-circle">
+    </div>
+</div>
 <hr>
 
 <div class="app-mensajes" id="app-mensajes">
 
-    <div class="text-right" *ngFor="let chat of chatService.chats">
-        <span class="badge badge-primary">Yoe</span>
+    <div *ngFor="let chat of chatService.chats" [ngClass]="{ 'text-right': chatService.usuario.uid == chat.uid }">
+        <span class="badge" [ngClass]="{'badge-primary': chatService.usuario.uid == chat.uid, 
+                                        'badge-success': chatService.usuario.uid != chat.uid}">
+            {{chat.nombre}}
+        </span>
         <p>
             {{chat.mensaje}}
         </p>
     </div>
-
-    <!-- <div class="text-right">
-        <span class="badge badge-primary">Yoe</span>
-        <p>
-            Esto es un mensaje
-        </p>
-    </div>
-
-    <div>
-        <span class="badge badge-success">Maria</span>
-        <p>
-            Esto es un mensaje
-        </p>
-    </div> -->
 </div>
 
 <input type="text" name="mensaje" class="form-control" placeholder="Envíar mensaje" (keyup.enter)="enviarMensaje()" [(ngModel)]="mensaje">
